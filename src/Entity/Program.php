@@ -25,8 +25,6 @@ class Program
 
     #[ORM\ManyToOne (targetEntity: Category::class, inversedBy: 'programs')]
     private $category;
-    // #[ORM\JoinColumn(nullable: false)]
-    // private ?Category $category = null;
 
     public function getId(): ?int
     {
