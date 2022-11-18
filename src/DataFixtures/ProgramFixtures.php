@@ -13,7 +13,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         [
             'title' => 'Walking dead',
             'synopsis' => 'Des zombies envahissent la terre',
-            'category' => 'Horreur',
+            'category' => 'Action',
         ],
         [
             'title' => 'Seigneur des Anneaux',
@@ -33,7 +33,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         [
             'title' => 'Yacine au tibet',
             'synopsis' => "Yacine n'as plus internet",
-            'category' => 'Action',
+            'category' => 'Horreur',
         ],
     ];
 
