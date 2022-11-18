@@ -31,7 +31,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             'category' => 'Animation',
         ],
         [
-            'title' => 'Yacine au tibet',
+            'title' => 'Yacine.localhost',
             'synopsis' => "Yacine n'as plus internet",
             'category' => 'Horreur',
         ],
