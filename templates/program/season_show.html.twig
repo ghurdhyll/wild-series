@@ -5,23 +5,24 @@
 {% endblock %}
 
 {% block body %}
-	{% for season in seasons %}
+Saison {{season.number}} de la Série : {{program.title}}
+	{% for episode in episodes %}
 
 		<div class="media">
 			<div class="media-body">
-				<h1 class="mt-0">Saison :
-					{{season.number}}</h1>
-				<p>{{ season.description }}</p>
+				<h1 class="mt-0">Episode :
+					{{episode.number}}</h1>
+				<p>{{episode.title}}</p>
 				{# <a href="{{ path("program_season_show", { id: program.id }, {id: season.id}) }}">Voir les épisodes</a>
-				/program/{programId}/season/{seasonId} #}
+								/program/{programId}/season/{seasonId} #}
 
-				<a href="/program/{{program.Id}}/season/{{season.Id}}">Voir les épisodes</a>
+				<a href="/program/{{program.Id}}/season/{{season.Id}}">Voir la fiche</a>
 
 			</div>
 		</div>
 	{% else %}
 
-		Aucune saison trouvée.
+		Aucune épisode trouvée.
 
 	{% endfor %}
 
