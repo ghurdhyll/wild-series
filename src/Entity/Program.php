@@ -7,8 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
+#[UniqueEntity(
+    fields: ['title'],
+    message: 'Ce titre est déja utilisé',
+)]
 class Program
 {
     #[ORM\Id]
@@ -17,9 +23,14 @@ class Program
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez entrer un titre') ]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'le titre ne doit pas dépacer {{ limit }} caractères') ]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Veuillez entrer un synopsis') ]
     private ?string $synopsis = null;
 
     #[ORM\Column(length: 255, nullable: true)]
