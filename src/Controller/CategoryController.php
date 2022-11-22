@@ -7,6 +7,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CategoryRepository;
 use App\Repository\ProgramRepository;
 
+use App\Form\CategoryType;
+use App\Entity\Category;
+use Symfony\Component\HttpFoundation\Request;
+
 class CategoryController extends AbstractController
 {
     #[Route('/category/', name: 'category_index')]
@@ -21,6 +25,28 @@ class CategoryController extends AbstractController
 
         );
     }
+
+
+    #[Route('/category/new', name: 'category_new')]
+    public function new(Request $request, CategoryRepository $categoryRepository): Response
+    {
+        $category = new Category();
+
+        $form = $this->createForm(CategoryType::class, $category);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $categoryRepository->save($category, true);
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        return $this->renderForm('category/new.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
 
     #[Route('/category/{categoryName}', methods: ['GET'], name: 'category_show')]
     public function show(string $categoryName, CategoryRepository $categoryRepository, ProgramRepository $programRepository): Response
@@ -38,6 +64,7 @@ class CategoryController extends AbstractController
             3,
         );
         
+
         return $this->render('category/show.html.twig', [
 
             'category' => $category,
