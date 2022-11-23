@@ -13,7 +13,7 @@
 					{{season.number}}</h1>
 				<p>{{ season.description }}</p>
 				{# <a href="{{ path("program_season_show", { id: program.id }, {id: season.id}) }}">Voir les épisodes</a>
-				/program/{programId}/season/{seasonId} #}
+								/program/{programId}/season/{seasonId} #}
 
 				<a href="/program/{{program.Id}}/season/{{season.Id}}">Voir les épisodes</a>
 
@@ -24,6 +24,23 @@
 		Aucune saison trouvée.
 
 	{% endfor %}
+	<strong>Acteurs :</strong>
+
+	<ul>
+
+		{% for actor in program.actors %}
+		
+			<a href="{{ path('app_actor_show', {'id': actor.id}) }}">
+				<li>{{ actor.name }}</li>
+			</a>
+
+		{% else %}
+
+			<li>Aucun acteur pour cette série</li>
+
+		{% endfor %}
+
+	</ul>
 
 	<a href="{{ path('program_index') }}">
 		Retour à la liste des programmes
